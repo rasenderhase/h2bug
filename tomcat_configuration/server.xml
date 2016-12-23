@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<Server port="8005" shutdown="SHUTDOWN">
+	<Listener className="org.apache.catalina.startup.VersionLoggerListener"/>
+	<Listener SSLEngine="on" className="org.apache.catalina.core.AprLifecycleListener"/>
+	<Listener className="org.apache.catalina.core.JreMemoryLeakPreventionListener"/>
+	<Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener"/>
+	<Listener className="org.apache.catalina.core.ThreadLocalLeakPreventionListener"/>
+
+	<!-- Global JNDI resources Documentation at /docs/jndi-resources-howto.html -->
+	<GlobalNamingResources>
+		<!-- Editable user database that can also be used by UserDatabaseRealm 
+			to authenticate users -->
+		<Resource auth="Container" description="User database that can be updated and saved" factory="org.apache.catalina.users.MemoryUserDatabaseFactory" name="UserDatabase" pathname="conf/tomcat-users.xml" type="org.apache.catalina.UserDatabase"/>
+		<Resource auth="Container" driverClassName="org.h2.Driver" logAbandoned="true" maxIdle="10" maxOpenPreparedStatements="5" maxTotal="50" maxWaitMillis="10000" name="jdbc/h2bug" password="" poolPreparedStatements="false" removeAbandonedOnBorrow="true" removeAbandonedOnMaintenance="true" removeAbandonedTimeout="180" scope="Shareable" testWhileIdle="true" timeBetweenEvictionRunsMillis="600000" type="javax.sql.DataSource" url="jdbc:h2:~/h2bug;AUTO_SERVER=TRUE;TRACE_LEVEL_SYSTEM_OUT=3" username="SA" validationQuery="select  1"/>
+	</GlobalNamingResources>
+
+	<Service name="Catalina">
+		<Connector connectionTimeout="20000" port="8080" protocol="HTTP/1.1" redirectPort="8443"/>
+		<Connector port="8009" protocol="AJP/1.3" redirectPort="8443"/>
+		<Engine defaultHost="localhost" name="Catalina">
+			<Host appBase="webapps" autoDeploy="true" name="localhost" unpackWARs="true">
+				<Realm className="org.apache.catalina.realm.DataSourceRealm" dataSourceName="jdbc/h2bug" debug="9" digest="SHA" roleNameCol="role_name" userCredCol="password" userNameCol="user_name" userRoleTable="v_user_role" userTable="user"/>
+				<Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
+			<Context docBase="h2bug" path="/h2bug" reloadable="true" source="org.eclipse.jst.jee.server:h2bug"/></Host>
+		</Engine>
+	</Service>
+</Server>
