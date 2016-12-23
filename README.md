@@ -1,6 +1,9 @@
 # h2bug
 Demonstration of "unexpected code path" in H2 Session.addLock() method
 
+see also [https://groups.google.com/forum/#!topic/h2-database/x2XoFP1G2l8]
+and [http://stackoverflow.com/questions/41293469/h2-database-in-tomcat-environment-throwing-runtimeexception-unexpected-code-pat].
+
 ## Eclipse project
 Check out the project and import it to eclipse.
 
