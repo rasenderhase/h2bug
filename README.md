@@ -1,8 +1,8 @@
 # h2bug
 Demonstration of "unexpected code path" in H2 Session.addLock() method
 
-see also [https://groups.google.com/forum/#!topic/h2-database/x2XoFP1G2l8]
-and [http://stackoverflow.com/questions/41293469/h2-database-in-tomcat-environment-throwing-runtimeexception-unexpected-code-pat].
+see also https://groups.google.com/forum/#!topic/h2-database/x2XoFP1G2l8
+and http://stackoverflow.com/questions/41293469/h2-database-in-tomcat-environment-throwing-runtimeexception-unexpected-code-pat.
 
 ## Eclipse project
 Check out the project and import it to eclipse.
@@ -11,7 +11,7 @@ Create a tomcat runtime environment and set the configuration path to `h2bug/tom
 
 Then connect to / create the database using your favorite SQL JDBC tool. The URL is `jdbc:h2:~/h2bug;AUTO_SERVER=TRUE`. Run the creation script `h2bug/sql/create.sql`. Disconnect.
 
-Start tomcat and surf to [http://localhost:8080/h2bug/TestServlet]. The site should ask for user name and password. Enter `ben` in both fields.
+Start tomcat and surf to http://localhost:8080/h2bug/TestServlet. The site should ask for user name and password. Enter `ben` in both fields.
 
 Watch the console log:
 ```
